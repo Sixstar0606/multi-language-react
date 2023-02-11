@@ -1,52 +1,27 @@
 {
-  "name": "frontend",
+  "name": "react-social",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@babel/core": "^7.15.5",
-    "@testing-library/jest-dom": "^5.14.1",
-    "@testing-library/react": "^9.5.0",
-    "@testing-library/user-event": "^7.2.1",
-    "babel-core": "^6.26.3",
-    "browserslist": "^4.21.5",
     "i18next": "^22.4.9",
     "i18next-browser-languagedetector": "^7.0.1",
     "i18next-http-backend": "^2.1.1",
     "i18next-xhr-backend": "^3.2.2",
-    "immer": "^9.0.6",
-    "isexe": "^2.0.0",
-    "node-notifier": "^10.0.1",
-    "object-path": "^0.11.6",
-    "react": "^16.13.1",
-    "react-dev-utils": "^12.0.0",
-    "react-dom": "^16.13.1",
-    "react-i18next": "^12.1.4",
-    "react-scripts": "^5.0.0",
-    "serialize-javascript": "^6.0.0",
-    "set-value": "^4.1.0",
-    "sockjs": "^0.3.21",
-    "url-parse": "^1.5.9"
+    "react": "^16.5.2",
+    "react-dom": "^16.5.2",
+    "react-i18next": "^12.1.5",
+    "react-redux": "^8.0.5",
+    "react-router-dom": "^6.8.1",
+    "react-s-alert": "^1.4.1",
+    "react-scripts": "1.1.5",
+    "redux": "^4.2.1",
+    "redux-devtools-extension": "^2.13.9",
+    "redux-thunk": "^2.4.2"
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "CI=false && react-scripts build",
-    "test": "react-scripts test",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
-  },
-  "proxy" : "http://34.233.125.115:8080/",
-  "eslintConfig": {
-    "extends": "react-app"
-  },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
   }
 }

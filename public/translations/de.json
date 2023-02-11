@@ -8,6 +8,40 @@
   
     "Advantages.label": "Vorteile",
   
-    "Advantagesdetails.label": "Flexibilität zur Verwendung anderer Pakete"
+    "Advantagesdetails.label": "Flexibilität zur Verwendung anderer Pakete",
+
+    "Language.En" : "Inglesa",
+    
+    "Language.SP" : "España",
+
+    "Login.label" : "Acceso",
+
+    "Google.Signin" : "Inicia sesión con Google",
+
+    "Profile.label" : "Perfil",
+
+    "Logout.label" : "Cerrar sesión",
+
+    "Signup.label" : "Inscribirse",
+
+    "Logo.label" : "Sociales de primavera",
+
+    "Login.title" : "Iniciar sesión en SpringSocial",
+
+    "Signup.title" : "Regístrese en SpringSocial",
+
+    "Google.login" : "Iniciar sesión con Google",
+
+    "NewUser.label" : "¿Nueva usuaria?",
+
+    "Tutor.label" : "Tutora",
+
+    "Parent.label" : "Madre",
+
+    "Next.label" : "Próxima",
+
+    "Already.Sign" : "¿Ya tienes una cuenta?",
+
+    "LandingText.label" : "Spring Boot React OAuth2 Demostración de inicio de sesión social"
   
   }

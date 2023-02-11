@@ -8,6 +8,39 @@
   
     "Advantages.label": "Advantages",
   
-    "Advantagesdetails.label": "Flexibility to use other packages: Flexibility to use other packages"
+    "Advantagesdetails.label": "Flexibility to use other packages: Flexibility to use other packages",
   
+    "Language.En" : "English",
+    
+    "Language.SP" : "Spain",
+
+    "Login.label" : "Login",
+
+    "Profile.label" : "Profile",
+
+    "Logout.label" : "Logout",
+
+    "Signup.label" : "Signup",
+
+    "Logo.label" : "Spring Social",
+
+    "Login.title" : "Login to SpringSocial",
+
+    "Signup.title" : "Signup to SpringSocial",
+
+    "Google.login" : "Login with Google",
+
+    "Google.Signin" : "Signin with Google",
+
+    "NewUser.label" : "New user?",
+
+    "Tutor.label" : "Tutor",
+
+    "Parent.label" : "Parent",
+
+    "Next.label" : "Next",
+
+    "Already.Sign" : "Already have an account?",
+
+    "LandingText.label" : "Spring Boot React OAuth2 Social Login Demo"
   }

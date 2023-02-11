@@ -1,4 +1,5 @@
 import React from "react";
+import i18n from 'i18next';
 
 import { useTranslation } from "react-i18next";
 
@@ -19,9 +20,9 @@ const LanguageSelector = () => {
 
     <div onChange={changeLanguage}>
 
-      <input type="radio" value="en" name="language" defaultChecked /> English
+      <input type="radio" value="en" name="language" defaultChecked /> {t("Language.En")}
       <input type="radio" value="de" name="language" />
-      German
+      {t("Language.SP")}
 
     </div>
 
