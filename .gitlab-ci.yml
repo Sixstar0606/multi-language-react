@@ -1,0 +1,62 @@
+stages:
+  - deploy
+  
+
+
+nonprod :
+  stage: deploy
+  image: alpine
+  when: manual
+  before_script:
+    - apk add openssh-client
+    - eval $(ssh-agent -s)
+    - echo "$SSH_PRIVATE_KEY" | tr -d '\r' | ssh-add -
+    - mkdir -p ~/.ssh
+    - chmod 700 ~/.ssh
+  script:
+    # - ssh -o StrictHostKeyChecking=no ubuntu@$EC2_IPADDRESS "sudo git clone https://healtyforb:glpat-MhBgqcgUWfmtBEaM_edw@gitlab.com/oogs2001/messaging_fe.git || true"
+    - ssh -o StrictHostKeyChecking=no ubuntu@$EC2_IPADDRESS "cd messaging_fe && sudo git pull"    
+    - ssh -o StrictHostKeyChecking=no ubuntu@$EC2_IPADDRESS "sudo docker -v"
+    #- ssh -o StrictHostKeyChecking=no ubuntu@$EC_IPADDRESS  "docker ps"
+    - CONTAINERS=$(ssh -o StrictHostKeyChecking=no ubuntu@$EC2_IPADDRESS  'sudo docker ps  -qf "name=marcel-front"')
+    - ssh -o StrictHostKeyChecking=no ubuntu@$EC2_IPADDRESS  " (sudo docker stop $CONTAINERS) || true"
+    - ssh -o StrictHostKeyChecking=no ubuntu@$EC2_IPADDRESS  " (sudo docker rm $CONTAINERS) || true"
+    - IMAGES=$(ssh -o StrictHostKeyChecking=no ubuntu@$EC2_IPADDRESS  "sudo docker images -q")
+    - ssh -o StrictHostKeyChecking=no ubuntu@$EC2_IPADDRESS  " (sudo docker rmi $IMAGES) ||true" 
+  #  - ssh -o StrictHostKeyChecking=no ubuntu@$EC2_IPADDRESS  "sudo docker rm --volumes marcel"
+    - ssh -o StrictHostKeyChecking=no ubuntu@$EC2_IPADDRESS  "cd messaging_fe && sudo docker build --no-cache -t marcel ."
+    - ssh -o StrictHostKeyChecking=no ubuntu@$EC2_IPADDRESS  "cd messaging_fe && sudo docker run -d -it -p 3000:3000 --name marcel-front marcel"
+
+    # - ssh -o StrictHostKeyChecking=no ubuntu@$EC2_IPADDRESS "docker "
+    # - ssh -o StrictHostKeyChecking=no ubuntu@$EC2_IPADDRESS "cd messaging_fe && (npm start || true)"
+    - echo "Non prod Application successfully deployed."
+
+
+
+prod :
+  stage: deploy
+  image: alpine
+  when: manual
+  before_script:
+    - apk add openssh-client
+    - eval $(ssh-agent -s)
+    - echo "$SSH_PRIVATE_KEY" | tr -d '\r' | ssh-add -
+    - mkdir -p ~/.ssh
+    - chmod 700 ~/.ssh
+  script:
+    # - ssh -o StrictHostKeyChecking=no ubuntu@$EC2_IPADDRESS "sudo git clone https://healtyforb:glpat-MhBgqcgUWfmtBEaM_edw@gitlab.com/oogs2001/messaging_fe.git || true"
+    - ssh -o StrictHostKeyChecking=no ubuntu@$EC2_IPADDRESS "cd messaging_fe && sudo git pull"    
+    - ssh -o StrictHostKeyChecking=no ubuntu@$EC2_IPADDRESS "sudo docker -v"
+    #- ssh -o StrictHostKeyChecking=no ubuntu@$EC_IPADDRESS  "docker ps"
+    - CONTAINERS=$(ssh -o StrictHostKeyChecking=no ubuntu@$EC2_IPADDRESS  'sudo docker ps  -qf "name=marcel-front"')
+    - ssh -o StrictHostKeyChecking=no ubuntu@$EC2_IPADDRESS  " (sudo docker stop $CONTAINERS) || true"
+    - ssh -o StrictHostKeyChecking=no ubuntu@$EC2_IPADDRESS  " (sudo docker rm $CONTAINERS) || true"
+  #  - ssh -o StrictHostKeyChecking=no ubuntu@$EC2_IPADDRESS  "sudo docker rm --volumes marcel"
+    - IMAGES=$(ssh -o StrictHostKeyChecking=no ubuntu@$EC2_IPADDRESS  "sudo docker images -q")
+    - ssh -o StrictHostKeyChecking=no ubuntu@$EC2_IPADDRESS  " (sudo docker rmi $IMAGES) ||true" 
+    - ssh -o StrictHostKeyChecking=no ubuntu@$EC2_IPADDRESS  "cd messaging_fe && sudo docker build --no-cache -t marcel ."
+    - ssh -o StrictHostKeyChecking=no ubuntu@$EC2_IPADDRESS  "cd messaging_fe && sudo docker run -d -it -p 3000:3000 --name marcel-front marcel"
+
+    # - ssh -o StrictHostKeyChecking=no ubuntu@$EC2_IPADDRESS "docker "
+    # - ssh -o StrictHostKeyChecking=no ubuntu@$EC2_IPADDRESS "cd messaging_fe && (npm start || true)"
+    - echo "Non prod Application successfully deployed."
